@@ -65,6 +65,40 @@ public class TestCases {
         ChargingStation chargingStation = new ChargingStation(1, 1, 2, null, null, null);
         assertNotNull(chargingStation);
     }
+    @Test
+    public void testEnergySourceGeneration() {
+        String solar = ChargingStation.eSourseGen(0);
+        assertEquals("Solar", solar);
+
+        String wind = ChargingStation.eSourseGen(1);
+        assertEquals("Wind", wind);
+
+        String grid = ChargingStation.eSourseGen(2);
+        assertEquals("Power Grid", grid);
+    }
+    @Test
+    public void testFileCreation() {
+        String currentDirectory = System.getProperty("user.dir");
+        String newDirectoryName = "TestDirectory2"; // Directory in which the file will be created
+        String newFileName = "testFile.txt"; // Name of the file to be created
+
+        File newDirectory = new File(currentDirectory, newDirectoryName);
+        File newFile = new File(newDirectory, newFileName);
+
+        boolean isDirectoryCreated = newDirectory.mkdir(); // Create the directory
+        assertTrue("Directory was not created", isDirectoryCreated);
+
+        try {
+            boolean isFileCreated = newFile.createNewFile(); // Attempt to create the file
+            assertTrue("File was not created", isFileCreated);
+            assertTrue("File does not exist", newFile.exists());
+            assertTrue("File is not a file", newFile.isFile());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        newFile.delete();
+        newDirectory.delete();
+    }
 }
 //Test change by arjun
 // Tes2 
