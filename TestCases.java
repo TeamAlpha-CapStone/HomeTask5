@@ -27,10 +27,28 @@ public class TestCases {
     }
 
     @Test
-    public void testAvailableSlotsisEqualtoTotalSlot() throws IOException, InterruptedException {
-
+    public void testAssignEnergySourceInValidRange() {
         ChargingStation chargingStation = new ChargingStation(1, 1, 2, null, null, null);
+        boolean solarFound = false;
+        boolean windFound = false;
+        boolean gridFound = false;
 
-        assertEquals(2, chargingStation.availableSlots); // Initial available slots
+        // Check if assignEnrgySourse returns all three types of sources
+        for (int i = 0; i < 50; i++) {
+            String energySource = chargingStation.assignEnrgySourse();
+            if (energySource.equals("Solar")) {
+                solarFound = true;
+            }
+            if (energySource.equals("Wind")) {
+                windFound = true;
+            }
+            if (energySource.equals("Power Grid")) {
+                gridFound = true;
+            }
+        }
+
+        assertTrue("Solar energy source not found", solarFound);
+        assertTrue("Wind energy source not found", windFound);
+        assertTrue("Power Grid energy source not found", gridFound);
     }
 }
