@@ -58,5 +58,9 @@ public class TestCases {
 
         assertEquals(2, chargingStation.availableSlots); // Initial available slots
     }
-    
+    @Test
+    public void testChargingStationCreation() {
+        ChargingStation chargingStation = new ChargingStation(1, 1, 2, null, null, null);
+        assertNotNull(chargingStation);
+    }
 }
