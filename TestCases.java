@@ -25,4 +25,12 @@ public class TestCases {
         assertEquals(station2, car2.findNearestStation());
         assertEquals(station3, car3.findNearestStation());
     }
+
+    @Test
+    public void testAvailableSlotsisEqualtoTotalSlot() throws IOException, InterruptedException {
+
+        ChargingStation chargingStation = new ChargingStation(1, 1, 2, null, null, null);
+
+        assertEquals(2, chargingStation.availableSlots); // Initial available slots
+    }
 }
