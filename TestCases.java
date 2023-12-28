@@ -13,7 +13,7 @@ public class TestCases {
         ChargingStation station2 = new ChargingStation(2, 10, 5, null, null, null);
         ChargingStation station3 = new ChargingStation(3, 15, 5, null, null, null);
 
-        ChargingStation[] stations = {station1, station2, station3};
+        ChargingStation[] stations = { station1, station2, station3 };
 
         // Create cars at different locations
         Car car1 = new Car("car1", 7, 2, stations);
@@ -51,6 +51,7 @@ public class TestCases {
         assertTrue("Wind energy source not found", windFound);
         assertTrue("Power Grid energy source not found", gridFound);
     }
+
     @Test
     public void testAvailableSlotsisEqualtoTotalSlot() throws IOException, InterruptedException {
 
@@ -58,6 +59,7 @@ public class TestCases {
 
         assertEquals(2, chargingStation.availableSlots); // Initial available slots
     }
+
     @Test
     public void testChargingStationCreation() {
         ChargingStation chargingStation = new ChargingStation(1, 1, 2, null, null, null);
