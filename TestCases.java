@@ -51,4 +51,12 @@ public class TestCases {
         assertTrue("Wind energy source not found", windFound);
         assertTrue("Power Grid energy source not found", gridFound);
     }
+    @Test
+    public void testAvailableSlotsisEqualtoTotalSlot() throws IOException, InterruptedException {
+
+        ChargingStation chargingStation = new ChargingStation(1, 1, 2, null, null, null);
+
+        assertEquals(2, chargingStation.availableSlots); // Initial available slots
+    }
+    
 }
