@@ -99,6 +99,32 @@ public class TestCases {
         newFile.delete();
         newDirectory.delete();
     }
+    @Test
+    public void testCarCreation() {
+        ChargingStation[] stations = new ChargingStation[2];
+        stations[0] = new ChargingStation(1, 1, 2, null, null, null);
+        stations[1] = new ChargingStation(2, 7, 2, null, null, null);
+
+        Car car = new Car("car1", 1, 2, stations);
+        assertNotNull(car);
+    }
+
+    @Test
+    public void testAdminAuthorization() {
+        ChargingStation station1 = new ChargingStation(1, 1, 2, null, null, null);
+        ChargingStation station2 = new ChargingStation(2, 7, 2, null, null, null);
+
+        Admin admin1 = new Admin(001, "admin1", station1);
+        Admin admin2 = new Admin(002, "admin2", station2);
+
+        // Verify correct admin access
+        assertTrue(admin1.ID == 001 && admin1.pass.equals("admin1"));
+        assertTrue(admin2.ID == 002 && admin2.pass.equals("admin2"));
+
+        // Invalid credentials should fail
+        assertFalse(admin1.ID == 002 && admin1.pass.equals("admin2"));
+        assertFalse(admin2.ID == 001 && admin2.pass.equals("admin1"));
+    }
 }
 //Test change by arjun
 // Tes2 
