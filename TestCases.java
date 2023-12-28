@@ -125,6 +125,56 @@ public class TestCases {
         assertFalse(admin1.ID == 002 && admin1.pass.equals("admin2"));
         assertFalse(admin2.ID == 001 && admin2.pass.equals("admin1"));
     }
+        @Test
+    public void testThreadSynchronization() throws InterruptedException, IOException {
+        String currentDirectory = System.getProperty("user.dir");
+        String newDirectoryName = "StationLogFiles";
+        File newDirectory = new File(currentDirectory, newDirectoryName);
+
+        if (!newDirectory.exists()) {
+            if (newDirectory.mkdir()) {
+                System.out.println("Directory created: " + newDirectory.getAbsolutePath());
+            } else {
+                System.out.println("Failed to create directory.");
+                return;
+            }
+        }
+
+        File s1file = new File(newDirectory, "TestStation1LogFiles");
+        FileWriter f1 = new FileWriter(s1file.getAbsolutePath());
+
+        ChargingStation chargingStation = new ChargingStation(1, 1, 2, f1, null, null);
+        Car car1 = new Car("car1", 1, 2, new ChargingStation[] { chargingStation });
+        Car car2 = new Car("car2", 2, 2, new ChargingStation[] { chargingStation });
+
+        car1.start();
+        car2.start();
+
+        car1.join();
+        car2.join();
+
+        // Additional assertions or validations if needed
+        assertEquals(2, chargingStation.availableSlots); // Both slots occupied
+
+        f1.close();
+        if (s1file.exists()) {
+            s1file.delete();
+        }
+    }
+
+    @Test
+    public void testDirectoryCreation() {
+        String currentDirectory = System.getProperty("user.dir");
+        String newDirectoryName = "TestDirectory1"; // Directory name to be created
+
+        File newDirectory = new File(currentDirectory, newDirectoryName);
+
+        boolean isCreated = newDirectory.mkdir(); // Attempt to create the directory
+
+        assertTrue("Directory was not created", isCreated);
+        assertTrue("Directory does not exist", newDirectory.exists());
+        assertTrue("Directory is not a directory", newDirectory.isDirectory());
+        newDirectory.delete();
 }
 //Test change by arjun
 // Tes2 
