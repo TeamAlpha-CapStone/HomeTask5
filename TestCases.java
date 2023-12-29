@@ -175,6 +175,7 @@ public class TestCases {
         assertTrue("Directory does not exist", newDirectory.exists());
         assertTrue("Directory is not a directory", newDirectory.isDirectory());
         newDirectory.delete();
+    }
 }
 //Test change by arjun
 // Tes2 
