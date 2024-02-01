@@ -1,0 +1,8 @@
+car5 Charged for 3 Minutes in Station2 ,with Energy Sourse as: Windon date: 31-01-2024
+car1 Charged for 2 Minutes in Station1 ,with Energy Sourse as: Power Gridon date: 31-01-2024
+car8 Charged for 1 Minutes in Station2 ,with Energy Sourse as: Power Gridon date: 31-01-2024
+car4 Charged for 3 Minutes in Station1 ,with Energy Sourse as: Power Gridon date: 31-01-2024
+car7 Charged for 4 Minutes in Station2 ,with Energy Sourse as: Power Gridon date: 31-01-2024
+car3 Charged for 1 Minutes in Station1 ,with Energy Sourse as: Windon date: 31-01-2024
+car2 Charged for 3 Minutes in Station1 ,with Energy Sourse as: Solaron date: 31-01-2024
+car6 Charged for 2 Minutes in Station2 ,with Energy Sourse as: Power Gridon date: 31-01-2024
