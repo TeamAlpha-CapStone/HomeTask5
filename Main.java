@@ -154,7 +154,7 @@ class ChargingStation {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
-            availableSlots=availableSlots-1;
+            availableSlots = availableSlots - 1;
             return true;
         } else {
             System.out.println(car.ID() + " is added to the waiting list.");
@@ -226,8 +226,6 @@ class Car extends Thread {
                 nearest = station;
             }
         }
-        // System.out.println("Nearest Station for " + this.ID() + " is at location " +
-        // nearest.location);
         return nearest;
     }
 
@@ -256,42 +254,40 @@ class Car extends Thread {
     }
 }
 
-class DirCreator
-{
-    public File CreateDir(File currentdir, String newdirname)
-    {
+class DirCreator {
+    public File CreateDir(File currentdir, String newdirname) {
 
         File newDirectory = new File(currentdir, newdirname);
 
         if (!newDirectory.exists()) {
             if (newDirectory.mkdir()) {
-                System.out.println(newdirname+" --> directory Created");
+                System.out.println(newdirname + " --> directory Created");
             } else {
-                System.out.println("Failed to create: "+newdirname+" directory.");
+                System.out.println("Failed to create: " + newdirname + " directory.");
             }
         }
 
         return newDirectory;
-        
+
     }
 }
-class FileCreator
-{
-    public File CreateFile(File DirName, String FileName)
-    {
+
+class FileCreator {
+    public File CreateFile(File DirName, String FileName) {
         File f = new File(DirName, FileName);
         try {
             if (f.createNewFile()) {
-                System.out.println(FileName+" file created");
+                System.out.println(FileName + " file created");
             }
 
         } catch (IOException e) {
-            System.out.println("Error Occured in creating "+FileName+" Log files");
+            System.out.println("Error Occured in creating " + FileName + " Log files");
             e.printStackTrace();
         }
         return f;
     }
 }
+
 public class Main {
 
     public static void main(String[] args) throws IOException, InterruptedException {
@@ -309,41 +305,41 @@ public class Main {
             }
         }
         // ***************************************************
-        DirCreator DC_Date_Wise=new DirCreator();
-        File date_dir=DC_Date_Wise.CreateDir(newDirectory, "Date_Wise");
+        DirCreator DC_Date_Wise = new DirCreator();
+        File date_dir = DC_Date_Wise.CreateDir(newDirectory, "Date_Wise");
         // ***************************************************
         Date currentDate = new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         String today_date = dateFormat.format(currentDate); // File name based on date
         String today_date_name = today_date + ".txt";
 
-        FileCreator FC_date_file=new FileCreator();
-        File date_file=FC_date_file.CreateFile(date_dir, today_date_name);
+        FileCreator FC_date_file = new FileCreator();
+        File date_file = FC_date_file.CreateFile(date_dir, today_date_name);
 
         // --------------------------------------
-        DirCreator DC_solarDirectory=new DirCreator();
-        File solarDirectory=DC_Date_Wise.CreateDir(newDirectory, "Solar");
+        DirCreator DC_solarDirectory = new DirCreator();
+        File solarDirectory = DC_Date_Wise.CreateDir(newDirectory, "Solar");
 
-        DirCreator DC_windDirectory=new DirCreator();
-        File windDirectory=DC_Date_Wise.CreateDir(newDirectory, "Wind");
+        DirCreator DC_windDirectory = new DirCreator();
+        File windDirectory = DC_Date_Wise.CreateDir(newDirectory, "Wind");
 
-        DirCreator DC_gridDirectory=new DirCreator();
-        File gridDirectory=DC_Date_Wise.CreateDir(newDirectory, "Grid");
+        DirCreator DC_gridDirectory = new DirCreator();
+        File gridDirectory = DC_Date_Wise.CreateDir(newDirectory, "Grid");
         // ===============================================================
-        FileCreator FC_s1file=new FileCreator();
-        File s1file=FC_s1file.CreateFile(newDirectory, "Station1LogFiles");
+        FileCreator FC_s1file = new FileCreator();
+        File s1file = FC_s1file.CreateFile(newDirectory, "Station1LogFiles");
         // ===============================================================
-        FileCreator FC_s2file=new FileCreator();
-        File s2file=FC_s2file.CreateFile(newDirectory, "Station2LogFiles");
+        FileCreator FC_s2file = new FileCreator();
+        File s2file = FC_s2file.CreateFile(newDirectory, "Station2LogFiles");
         // ===============================================================
-        FileCreator FC_solarfile=new FileCreator();
-        File solarfile=FC_solarfile.CreateFile(solarDirectory, "Solar_E_Sourse_Logfile");
+        FileCreator FC_solarfile = new FileCreator();
+        File solarfile = FC_solarfile.CreateFile(solarDirectory, "Solar_E_Sourse_Logfile");
         // =================================================================
-        FileCreator FC_windfile=new FileCreator();
-        File windfile=FC_windfile.CreateFile(windDirectory, "Wind_E_Sourse_Logfile");
+        FileCreator FC_windfile = new FileCreator();
+        File windfile = FC_windfile.CreateFile(windDirectory, "Wind_E_Sourse_Logfile");
         // ================================================================
-        FileCreator FC_gridfile=new FileCreator();
-        File gridfile=FC_gridfile.CreateFile(gridDirectory, "Grid_E_Sourse_Logfile");
+        FileCreator FC_gridfile = new FileCreator();
+        File gridfile = FC_gridfile.CreateFile(gridDirectory, "Grid_E_Sourse_Logfile");
         // ===============================================================
         FileWriter f1 = new FileWriter(s1file.getAbsolutePath());
         FileWriter f2 = new FileWriter(s2file.getAbsolutePath());
@@ -361,16 +357,6 @@ public class Main {
 
         Admin as1 = new Admin(001, "admin1", station1);
         Admin as2 = new Admin(002, "admin2", station2);
-
-        // List<String> dates=new ArrayList<>();
-        // if(dates.contains(today_date))
-        // {
-        // System.out.println("Yes it already contains");
-        // }
-        // else{
-        // dates.add(today_date);
-        // System.out.println("newly added date");
-        // }
 
         ChargingStation[] stations = { station1, station2 }; // Create an array of charging stations
 
@@ -394,15 +380,6 @@ public class Main {
         car7.start();
         car8.start();
 
-        // while (car1.isAlive() || car2.isAlive() || car3.isAlive() ||
-        // car4.isAlive()||car5.isAlive() || car6.isAlive() || car7.isAlive() ||
-        // car8.isAlive()) {
-        // try {
-        // Thread.sleep(1000); // Sleep for a short duration before rechecking
-        // } catch (InterruptedException e) {
-        // e.printStackTrace();
-        // }
-        // }
         car1.join();
         car2.join();
         car3.join();
@@ -412,8 +389,6 @@ public class Main {
         car7.join();
         car8.join();
 
-        // f1.flush();
-        // f2.flush();
         f1.close();
         f2.close();
         solarFW.close();
@@ -425,8 +400,6 @@ public class Main {
         System.out.println(
                 "=========================================================================================================");
 
-        // System.out.println("All cars have finished their charging. Program
-        // terminated.");
         Scanner sc = new Scanner(System.in);
         System.out.print("Would You like to View log files(yes/no)");
         if ("yes".equals(sc.next())) {
@@ -524,17 +497,17 @@ public class Main {
                             myreader3.close();
                             break;
                         default:
-                            System.out.println("Invalid Input, ----End of Program----");
+                            System.out.println("Invalid Input ----End of Program----");
                             break;
 
                     }
 
                 } //
                 else {
-                    System.out.println("Nothing exists like that. ----End of Program----");
+                    System.out.println("Invalid Input ----End of Program----");
                 }
             } else {
-                System.out.println("Then y did u enter \"yes\" before, Don't waste my time. ----End of Program----");
+                System.out.println("Thank you. ----End of Program----");
             }
         } else {
             System.out.println("Then thank you. ----End of Program----");
